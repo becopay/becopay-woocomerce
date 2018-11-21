@@ -55,4 +55,6 @@ RUN cd $INSTALL_DIR \
     && find . -type d -exec chmod 770 {} \; \
     && find . -type f -exec chmod 660 {} \;
 
+RUN rm -rf /tmp/*
+
 WORKDIR $INSTALL_DIR
