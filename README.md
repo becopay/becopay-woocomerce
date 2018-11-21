@@ -21,7 +21,7 @@ MYSQL_PREFIX=becowp_
 
 BASE_URL=http://127.0.0.1
 SITE_TITLE=my-store
-ADMIN_EMAIL=amdin@example.com
+ADMIN_EMAIL=admin@mail.com
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=Admin123456
 
