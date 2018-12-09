@@ -4,8 +4,8 @@ LABEL maintainer="io@becopay.com"
 LABEL version="4.9.8"
 LABEL description="Wordpress with woocommerce and becopay plugin"
 
-ENV WORDPRESS_VERSION 4.9.8
-ENV WOOCOMMERCE_VERSION 3.5.1
+ENV WORDPRESS_VERSION 5.0
+ENV WOOCOMMERCE_VERSION 3.5.2
 ENV BECOPAY_VERSION master
 
 ENV WOOCOMMERCE_PLUGIN woocommerce
