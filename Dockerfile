@@ -6,7 +6,7 @@ LABEL description="Wordpress with woocommerce and becopay plugin"
 
 ENV WORDPRESS_VERSION 5.0
 ENV WOOCOMMERCE_VERSION 3.5.2
-ENV BECOPAY_VERSION master
+ENV BECOPAY_VERSION 1.1.1
 
 ENV WOOCOMMERCE_PLUGIN woocommerce
 ENV BECOPAY_PLUGIN Woocommerce-Becopay-Gateway
@@ -42,7 +42,7 @@ RUN cd /tmp && \
 RUN mkdir $BECOPAY_DIR
 
 RUN cd /tmp && \
-  curl https://codeload.github.com/becopay/Woocommerce-Becopay-Gateway/tar.gz/$BECOPAY_VERSION -o $BECOPAY_VERSION.tar.gz && \
+  curl https://codeload.github.com/becopay/Woocommerce-Becopay-Gateway/tar.gz/v$BECOPAY_VERSION -o $BECOPAY_VERSION.tar.gz && \
   tar xvf $BECOPAY_VERSION.tar.gz && \
   mv -f Woocommerce-Becopay-Gateway-$BECOPAY_VERSION/* $BECOPAY_DIR
 
