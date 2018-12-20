@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+cd $INSTALL_DIR
+
+# Generate the wp-config.php file
+cp wp-config-sample.php wp-config.php
+sed -i s/localhost/$MYSQL_HOST/ wp-config.php
+sed -i s/database_name_here/$MYSQL_DATABASE/ wp-config.php
+sed -i s/username_here/$MYSQL_USER/ wp-config.php
+sed -i s/password_here/$MYSQL_PASSWORD/ wp-config.php
+sed -i s/wp_/$MYSQL_PREFIX/ wp-config.php
+
+#add perl
+apk add perl
+
+#set WP salts
+perl -i -pe'
+  BEGIN {
+    @chars = ("a" .. "z", "A" .. "Z", 0 .. 9);
+    push @chars, split //, "!@#$%^&*()-_ []{}<>~\`+=,.;:/?|";
+    sub salt { join "", map $chars[ rand @chars ], 1 .. 64 }
+  }
+  s/put your unique phrase here/salt()/ge
+' wp-config.php
+
+#delete perl
+apk del perl
+
+# Install the WordPress database.
+wp core install --path=$INSTALL_DIR --url=$BASE_URL --title=$SITE_TITLE --admin_user=$ADMIN_USERNAME --admin_password=$ADMIN_PASSWORD --admin_email=$ADMIN_EMAIL
+
+#Activate plugins
+wp plugin activate $WOOCOMMERCE_PLUGIN
+wp plugin activate $BECOPAY_PLUGIN
+
+chown -R www-data:www-data $INSTALL_DIR
